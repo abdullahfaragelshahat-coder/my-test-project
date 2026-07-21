@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdatePrescriptionRequest extends FormRequest
+{
+
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+
+
+    public function rules(): array
+    {
+        return [
+
+            'doctor_id' => 'required|exists:doctors,id',
+
+            'patient_id' => 'required|exists:patients,id',
+
+            'diagnosis' => 'required|string',
+
+            'notes' => 'nullable|string',
+
+            'prescription_date' => 'required|date'
+
+        ];
+    }
+}
